@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Thyself Extension",
+  "version": "0.2.0",
+  "description": "Local-first extension for Thyself: collects YouTube titles and keeps your profile and daily piece stored locally; bridges the Thyself web app to the extension.",
+  "permissions": ["storage"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "dashboard.html" },
+  "externally_connectable": {
+    "matches": [
+      "http://localhost:3000/*",
+      "https://localhost:3000/*"
+    ]
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://www.youtube.com/*",
+      "https://m.youtube.com/*",
+      "https://youtube.com/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  },{
+    "matches": [
+      "http://localhost:3000/*",
+      "http://127.0.0.1:3000/*"
+    ],
+    "js": ["bridge.js"],
+    "run_at": "document_start"
+  }]
+}

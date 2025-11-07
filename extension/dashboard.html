@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Thyself Extension</title>
+<style>
+  body{font-family:system-ui;margin:1rem;min-width:640px;}
+  h2{margin:.25rem 0 .5rem}
+  h3{margin:.75rem 0 .25rem}
+  pre{background:#111;color:#eee;padding:.75rem;max-height:40vh;overflow:auto;font-size:12px;border-radius:6px}
+  button{margin-right:.5rem}
+  .bar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.5rem}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .muted{color:#666;font-size:12px}
+  .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  .list{max-height:28vh;overflow:auto;border:1px solid #ddd;border-radius:6px;padding:.5rem}
+  .item{display:flex;flex-direction:column;border-bottom:1px dashed #ddd;padding:.4rem 0}
+  .item:last-child{border-bottom:none}
+  a{color:#1976d2;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pill{background:#eef;border-radius:999px;padding:.1rem .5rem;font-size:11px}
+  .counts{display:flex;gap:8px}
+  .footer{margin-top:12px;padding-top:8px;border-top:1px solid #ddd;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;justify-content:flex-start}
+</style>
+</head><body>
+  <h2>Thyself Extension</h2>
+  <div class="row">
+    <span class="muted">Status:</span> <span id="status">—</span>
+  </div>
+  <div class="bar">
+    <span class="counts"><span class="pill" id="titlesCount">0 titles</span><span class="pill" id="eventsCount">0 events</span></span>
+  </div>
+
+  <div class="grid">
+    <section>
+      <h3>Today's piece</h3>
+      <div id="todayPiece">—</div>
+    </section>
+  </div>
+
+  <div class="footer">
+    <button id="refresh">Refresh</button>
+    <button id="exportTitles">Export Titles JSON</button>
+    <button id="clearTitles">Clear Titles</button>
+    <button id="clearEvents">Delete All Events</button>
+    <button id="clearProfileArchive" style="margin-left:auto">Clear Profile + Archive</button>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body></html>

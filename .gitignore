@@ -1,0 +1,190 @@
+###############################################
+# Thyself Project .gitignore
+# Python ML + Chrome MV3 Extension + local data
+###############################################
+
+# --- Core Python build / artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+*.egg
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# --- Python tooling caches ---
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+.benchmarks/
+
+# --- Jupyter / IPython ---
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# --- Logs & debug artifacts ---
+*.log
+logs/
+debug.log
+
+# --- Model / training outputs (keep small example data) ---
+ml/checkpoints/
+ml/runs/
+ml/outputs/
+ml/tmp/
+backend/checkpoints/
+backend/runs/
+backend/outputs/
+backend/tmp/
+*.pt
+*.bin
+*.ckpt
+*.onnx
+*.npz
+# Allow committing taxonomy JSON if desired
+!ml/taxonomies/taxonomy.json
+!backend/taxonomies/taxonomy.json
+# Explicitly ignore embedding label caches even if other rules change
+ml/out/label_cache_*.npz
+backend/out/label_cache_*.npz
+backend/out/reco_cache.json
+*.npy
+
+###############################################
+# Ignore all data artifacts under data dirs now
+# (explicit blanket to avoid accidental commits of private/exported titles)
+ml/data/**
+backend/data/**
+# Optional: uncomment to keep a small placeholder example
+#!ml/data/example.csv
+
+# (Removed fine-grained ml/data embedding patterns; blanket rule above supersedes.)
+
+# --- Local browsing event exports (do not commit personal data) ---
+local-events*.json
+events-export*.json
+exported-events*.json
+*events_backup*.json
+
+# --- Temporary analysis / scratch files ---
+scratch*/
+tmp*/
+*.tmp
+*.bak
+*.swp
+*.orig
+*.rej
+
+# --- OS / Editor noise ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.lnk
+~$*
+*.iml
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# --- Node / web extension tooling (future) ---
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+*.tsbuildinfo
+
+# Built / packaged extension bundles
+extension/dist/
+extension/build/
+extension/*.crx
+extension/*.zip
+
+# --- Next.js web app build artifacts ---
+.next/
+out/
+.vercel/
+web/.next/
+web/out/
+web/.vercel/
+*.eslintcache
+
+# --- Misc security / secrets ---
+*.key
+*.pem
+*.crt
+*.pfx
+secrets*/
+
+# --- Coverage / profiling ---
+prof/*.prof
+*.prof
+
+# --- Cache directories (general) ---
+.cache/
+cache/
+
+# --- Python compiled protocol buffers or cython (if added later) ---
+*.c
+*.cpp
+*.pyd
+
+# --- Ignore large raw datasets except explicitly whitelisted examples ---
+ml/data/raw/**
+ml/data/private/**
+backend/data/raw/**
+backend/data/private/**
+
+# Whitelist taxonomy & config files
+!ml/taxonomies/**
+!ml/configs/**
+!backend/taxonomies/**
+!backend/configs/**
+
+# --- Ignore user-specific exports or ranking outputs ---
+inference_results*.jsonl
+ranking_output*.jsonl
+
+# --- Allow README & docs ---
+!README.md
+docs/_build/
+
+# End of file
+###############################################
+# Explicit additional ignores (requested)
+###############################################
+
+# Ignore specific READMEs under these folders
+/backend/README
+/extension/README
+/tools/README
+/web/README.md
+
+# Ignore setup/docs files with sensitive deployment details
+/AWS_SETUP.md
+/DESIGN_DOCUMENT.md
+/DESIGN_DOCUMENT
+
+# Ignore deployment scripts and task definition JSON
+/setup_backend_prod.ps1
+/taskdef.json
+**/taskdef.json
+
+# Extra safety: common secret filename patterns (keep generic and non-destructive)
+*secret*.*
+*Secret*.*
+*password*.*
+*passwd*.*

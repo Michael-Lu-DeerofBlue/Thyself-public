@@ -1,0 +1,30 @@
+# Optimize Docker build context for backend image built from repo root (-f backend/Dockerfile)
+# Strategy: ignore everything by default, then re-include only what's needed.
+
+# 1) Ignore everything
+**
+
+# 2) Re-include backend app and root requirements
+!backend/
+!backend/**
+!requirements.txt
+!.dockerignore
+
+# 3) Re-exclude common junk inside backend
+backend/**/__pycache__/
+backend/**/.pytest_cache/
+backend/**/.mypy_cache/
+backend/**/.ipynb_checkpoints/
+backend/**/.ruff_cache/
+backend/**/.venv/
+backend/**/venv/
+backend/**/env/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/*.pyd
+backend/**/*.log
+backend/**/.DS_Store
+backend/**/Thumbs.db
+
+# 4) If you later add large local data under backend/, exclude it here
+# backend/data/raw/
